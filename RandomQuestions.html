@@ -1,0 +1,160 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Random Questions Flash Card</title>
+
+    <script>
+        // ========================================
+        // HOW TO MODIFY QUESTIONS
+        // ========================================
+        // 
+        // TO ADD A NEW QUESTION:
+        // 1. Add a new line with your question in backticks (``)
+        // 2. End the line with a comma (,)
+        // 3. Follow the format: `Your question here?`,
+        //
+        // TO DELETE A QUESTION:
+        // 1. Remove the entire line containing the question
+        //
+        // TO MODIFY AN EXISTING QUESTION:
+        // 1. Edit the text between the backticks
+        // 2. Keep the quotes and comma format intact
+        //
+        // FORMAT RULES:
+        // - Each question must be on its own line
+        // - Each question must be wrapped in backticks (``)
+        // - Each question must end with a comma (,)
+        //
+        // ========================================
+        const questions = [
+        `What strategies help you stay focused during long periods of deep work?`,
+        `How do you approach resolving conflicts when teammates disagree on priorities?`,
+        `Which habits have most improved your ability to learn new technologies quickly?`,
+        `What would you change about your current daily routine to gain two extra productive hours?`,
+        `How can mentorship programs be structured to support both junior and senior participants?`,
+        `What metrics most accurately reflect the health and sustainability of a growing startup?`,
+        `How do you decide when to refactor aging code versus rewriting it from the ground up?`,
+        `Which qualities make feedback from peers feel actionable instead of discouraging?`,
+        `What practices keep remote teams aligned on goals without creating meeting fatigue?`,
+        `How can organizations balance rapid experimentation with the need for consistent user experiences?`,
+        `What steps help transform customer complaints into opportunities for long term loyalty?`,
+        `Where do you seek inspiration when brainstorming innovative solutions for persistent problems?`,
+        `How do you evaluate whether a new tool genuinely solves pain points or merely adds complexity?`,
+        `What role should psychological safety play in how leaders design their team communication norms?`,
+        `How might inclusive design principles improve products for users who are often overlooked?`,
+        `What actions can individuals take to reduce the environmental impact of their digital lifestyles?`,
+        `How do you maintain momentum on ambitious projects when early results are discouraging?`,
+        `What techniques help translate high level strategy into clear, measurable objectives?`,
+        `How should organizations prepare for ethical dilemmas arising from emerging artificial intelligence?`,
+        `What lessons from past failures continue to shape the way you plan future initiatives?`,
+      ];
+    </script>
+
+    <style>
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        padding: 0;
+        font-family: Arial, Helvetica, sans-serif;
+        background: #F4F6FB;
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #333;
+      }
+
+      .app {
+        text-align: center;
+        max-width: 800px;
+        width: 100%;
+        padding: 24px;
+      }
+
+      .flash-card {
+        background: #FFFFFF;
+        border-radius: 16px;
+        box-shadow: 0 18px 45px rgba(28, 46, 69, 0.12);
+        padding: 72px 48px;
+        min-height: 360px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 2.25rem;
+        line-height: 1.4;
+        margin-bottom: 32px;
+      }
+
+      .flash-card p {
+        margin: 0;
+      }
+
+      button {
+        background: #3F64FF;
+        color: #FFFFFF;
+        border: none;
+        border-radius: 8px;
+        padding: 14px 24px;
+        font-size: 1rem;
+        font-weight: 600;
+        cursor: pointer;
+        transition: transform 0.15s ease, box-shadow 0.15s ease;
+      }
+
+      button:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 12px 24px rgba(63, 100, 255, 0.25);
+      }
+
+      button:active {
+        transform: translateY(0);
+        box-shadow: none;
+      }
+
+      button:disabled {
+        background: #B8C3FF;
+        cursor: not-allowed;
+        box-shadow: none;
+      }
+    </style>
+  </head>
+  <body>
+    <main class="app">
+      <section class="flash-card" id="flash-card">
+        <p id="question-text">Welcome to My Random Questions!</p>
+      </section>
+      <button id="next-question">Get a Question</button>
+    </main>
+
+    <script>
+
+      let remainingQuestions = shuffle([...questions]);
+
+      const questionText = document.getElementById("question-text");
+      const nextButton = document.getElementById("next-question");
+
+      nextButton.addEventListener("click", () => {
+        if (remainingQuestions.length === 0) {
+          remainingQuestions = shuffle([...questions]);
+        }
+
+        const nextQuestion = remainingQuestions.pop();
+        questionText.textContent = nextQuestion;
+      });
+
+      function shuffle(list) {
+        const array = [...list];
+        for (let i = array.length - 1; i > 0; i -= 1) {
+          const j = Math.floor(Math.random() * (i + 1));
+          [array[i], array[j]] = [array[j], array[i]];
+        }
+        return array;
+      }
+    </script>
+  </body>
+</html>
